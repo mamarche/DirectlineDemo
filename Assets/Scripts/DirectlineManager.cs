@@ -14,6 +14,8 @@ public class DirectlineManager : Singleton<DirectlineManager>
     private TMP_InputField inputField;
     [SerializeField]
     private TMP_Text responseText;
+    [SerializeField]
+    private CharacterController character;
 
     private ConversationState _conversationState = new ConversationState();
     
@@ -32,7 +34,7 @@ public class DirectlineManager : Singleton<DirectlineManager>
     public void OnSendMessage()
     {
         SpeechManager.Instance.StopRecognition();
-        DirectlineManager.Instance.SendDirectlineMessage(inputField.text);
+       SendDirectlineMessage(inputField.text);
     }
 
     internal void SetMessage(string recognizedString)
@@ -49,6 +51,7 @@ public class DirectlineManager : Singleton<DirectlineManager>
     private void OnEnable()
     {
         BotDirectLineManager.Instance.BotResponse += Instance_BotResponse;
+        SpeechManager.Instance.OnAudioEnded += () => { character.StopTalking(); };
     }
     private void OnDisable()
     {
@@ -74,6 +77,7 @@ public class DirectlineManager : Singleton<DirectlineManager>
                 responseText.text = e.Messages[messageId].Text;
 
                 SpeechManager.Instance.Speech(responseText.text);
+                character.StartTalking();
                 Debug.Log($"Message Received: {e.Messages[messageId].Text}");
                 
                 break;

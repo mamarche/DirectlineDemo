@@ -6,6 +6,8 @@ using TMPro;
 using Microsoft.CognitiveServices.Speech;
 using System;
 
+public delegate void AudioClipHandler();
+
 public class SpeechManager : Singleton<SpeechManager>
 {
     [SerializeField] private string SpeechServicesSubscriptionKey = "Your Subscription Key";
@@ -19,6 +21,8 @@ public class SpeechManager : Singleton<SpeechManager>
     private SpeechConfig speechConfig;
     private SpeechRecognizer recognizer;
     private System.Object threadLocker = new System.Object();
+
+    public event AudioClipHandler OnAudioEnded;
 
     private void Start()
     {
@@ -55,6 +59,9 @@ public class SpeechManager : Singleton<SpeechManager>
             {
                 var audioClip = ByteArrayToClip(result.AudioData);
                 audioSource.clip = audioClip;
+
+                Invoke("AudioEnd", audioClip.length);
+
                 audioSource.Play();
 
                 Debug.Log("Speech synthesis succeeded!");
@@ -65,6 +72,12 @@ public class SpeechManager : Singleton<SpeechManager>
                 Debug.Log($"CANCELED:\nReason=[{cancellation.Reason}]\nErrorDetails=[{cancellation.ErrorDetails}]\nDid you update the subscription info?");
             }
         }
+    }
+
+    private void AudioEnd()
+    {
+        if (OnAudioEnded != null)
+            OnAudioEnded();
     }
 
     public async void StartContinuousRecognition()

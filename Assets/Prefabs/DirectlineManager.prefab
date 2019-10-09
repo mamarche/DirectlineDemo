@@ -46,3 +46,4 @@ MonoBehaviour:
   directlineSecret: your secret here
   inputField: {fileID: 0}
   responseText: {fileID: 0}
+  character: {fileID: 0}

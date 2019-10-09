@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 346da6018053e4547a4f3c264122a2c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeechServicesSubscriptionKey: your service key
+  SpeechServicesSubscriptionKey: your key here
   SpeechServicesRegion: northeurope
   fromLanguage: en-us
   audioSource: {fileID: 5244821012891699759}

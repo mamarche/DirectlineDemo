@@ -35,6 +35,19 @@ public class BotDirectLineManager
         }
     }
 
+    private static string _userId;
+    public static string UserId
+    {
+        get
+        {
+            if (_userId == null)
+            {
+                _userId = Guid.NewGuid().ToString();
+            }
+            return _userId;
+        }
+    }
+
     public bool IsInitialized
     {
         get;

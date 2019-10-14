@@ -10,10 +10,16 @@ public delegate void AudioClipHandler();
 
 public class SpeechManager : Singleton<SpeechManager>
 {
-    [SerializeField] private string SpeechServicesSubscriptionKey = "Your Subscription Key";
-    [SerializeField] private string SpeechServicesRegion = "westeurope";
-    [SerializeField] private string fromLanguage = "en-us";
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField]
+    private string SpeechServicesSubscriptionKey = "Your Subscription Key";
+    [SerializeField]
+    private string SpeechServicesRegion = "northeurope";
+    [SerializeField]
+    private string language = "it-it";
+    [SerializeField]
+    private string voiceName = "it-IT-Cosimo-Apollo";
+    [SerializeField]
+    private AudioSource audioSource;
 
     private bool isRecognized = false;
     private string errorString;
@@ -27,6 +33,8 @@ public class SpeechManager : Singleton<SpeechManager>
     private void Start()
     {
         speechConfig = SpeechConfig.FromSubscription(SpeechServicesSubscriptionKey, SpeechServicesRegion);
+        speechConfig.SpeechSynthesisLanguage = language;
+        speechConfig.SpeechSynthesisVoiceName = voiceName;
     }
 
     private void Update()
@@ -194,7 +202,7 @@ public class SpeechManager : Singleton<SpeechManager>
         if (recognizer == null)
         {
             SpeechConfig config = SpeechConfig.FromSubscription(SpeechServicesSubscriptionKey, SpeechServicesRegion);
-            config.SpeechRecognitionLanguage = fromLanguage;
+            config.SpeechRecognitionLanguage = language;
             recognizer = new SpeechRecognizer(config);
 
             if (recognizer != null)

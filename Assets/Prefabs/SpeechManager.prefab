@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7862342647914368317}
-  - component: {fileID: 2088691115806461133}
+  - component: {fileID: 32745637}
   m_Layer: 0
   m_Name: SpeechManager
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2088691115806461133
+--- !u!114 &32745637
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,10 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 346da6018053e4547a4f3c264122a2c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeechServicesSubscriptionKey: your key here
-  SpeechServicesRegion: northeurope
+  SpeechServicesSubscriptionKey: 09334310a35f4e8cbe987f097a60d6bb
+  SpeechServicesRegion: westeurope
   fromLanguage: en-us
   audioSource: {fileID: 5244821012891699759}
+  debugText: {fileID: 0}
 --- !u!1 &1514525792746671933
 GameObject:
   m_ObjectHideFlags: 0

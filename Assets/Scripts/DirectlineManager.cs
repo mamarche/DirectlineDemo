@@ -1,9 +1,6 @@
 ﻿using Assets.BotDirectLine;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Rendering;
 using UnityEngine;
 
 public class DirectlineManager : Singleton<DirectlineManager>
@@ -29,7 +26,7 @@ public class DirectlineManager : Singleton<DirectlineManager>
     internal void SendDirectlineMessage(string text)
     {
         StartCoroutine(BotDirectLineManager.Instance.SendMessageCoroutine(_conversationState.ConversationId,
-            "MyUserId", text, "My User"));
+            BotDirectLineManager.UserId, text, "My User"));
     }
     public void OnSendMessage()
     {
@@ -72,14 +69,16 @@ public class DirectlineManager : Singleton<DirectlineManager>
                 break;
             case Assets.BotDirectLine.EventTypes.MessageReceived:
 
-                int messageId = Convert.ToInt32(e.Watermark);
+                if (e.Watermark != null)
+                {
+                    int messageId = Convert.ToInt32(e.Watermark);
 
-                responseText.text = e.Messages[messageId].Text;
+                    responseText.text = e.Messages[messageId].Text;
 
-                SpeechManager.Instance.Speech(responseText.text);
-                character.StartTalking();
-                Debug.Log($"Message Received: {e.Messages[messageId].Text}");
-                
+                    SpeechManager.Instance.Speech(responseText.text);
+                    character.StartTalking();
+                    Debug.Log($"Message Received: {e.Messages[messageId].Text}");
+                }
                 break;
             case Assets.BotDirectLine.EventTypes.MessageSent:
                 if (!string.IsNullOrEmpty(_conversationState.ConversationId))

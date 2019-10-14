@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3752688727985987433}
-  - component: {fileID: 6258671958810883243}
+  - component: {fileID: 7807560209467939707}
   m_Layer: 0
   m_Name: DirectlineManager
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6258671958810883243
+--- !u!114 &7807560209467939707
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec44233151d024f42a200fd9b623ce45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directlineSecret: your secret here
+  directlineSecret: 
   inputField: {fileID: 0}
   responseText: {fileID: 0}
   character: {fileID: 0}
